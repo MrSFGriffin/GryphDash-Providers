@@ -32,6 +32,19 @@ To create release artifacts for all supported platforms:
 ./build-release.sh
 ```
 
+To build and publish the complete GitHub release in one command, authenticate
+with `gh auth login` first and provide a semantic version:
+
+```sh
+./release.sh 1.0.0
+```
+
+The script builds all platform binaries, generates `manifest-currency.json`,
+`manifest-codex.json`, and `manifest-openrouter.json` from the provider widget
+responses and checksums, creates the `v1.0.0` release when it does not exist, or
+replaces its assets when it does exist. Temporary build artifacts are removed
+after upload.
+
 Publish the resulting binaries and `SHA256SUMS` at the artifact URLs referenced
 by the GryphDash provider repository manifests.
 

@@ -17,4 +17,8 @@ for platform in linux-amd64 windows-amd64 darwin-amd64 darwin-arm64; do
   done
 done
 
-sha256sum "$output_dir"/gryphdash-provider-* > "$output_dir/SHA256SUMS"
+if command -v sha256sum >/dev/null 2>&1; then
+  sha256sum "$output_dir"/gryphdash-provider-* > "$output_dir/SHA256SUMS"
+else
+  shasum -a 256 "$output_dir"/gryphdash-provider-* > "$output_dir/SHA256SUMS"
+fi
