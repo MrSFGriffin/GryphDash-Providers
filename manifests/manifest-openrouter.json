@@ -9,7 +9,7 @@
     "id": "openrouter",
     "name": "OpenRouter",
     "description": "OpenRouter API key usage and credits",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "protocolVersion": 1,
     "widgets": {
       "widgets": [
@@ -161,20 +161,20 @@
     },
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-darwin-amd64",
-        "sha256": "b92db5018be4471bb1e9ddfc6bca2455075b6209a8d2757683010526676195b6"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-amd64",
+        "sha256": "a496a0c6d5728e1c7929c751dfe73a1d46a9a34648e941f9ae2911daf1a31494"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-darwin-arm64",
-        "sha256": "f7755c8120e6f4d7c8e0c66959ee1cf07a58897ea9f98b0c6ddbee9d147c5ba0"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-arm64",
+        "sha256": "f708b2c1b60d27f0fd71de26be7a98b073f8228ef8475beb98adbe21ab96a3ec"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-linux-amd64",
-        "sha256": "543d7beb4d28ddd116bcc3dafbf246ecbb89c0b8a07f6178c7b95abb509ee0c4"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-linux-amd64",
+        "sha256": "ff1e6c29df66a12a028912ab34e9bb12012b13655f752bffd7ec14c578c4100c"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-windows-amd64.exe",
-        "sha256": "284b110fad98f4309c741bdc05b2b106fbef6959732552fde26db1e88189bb9d"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-windows-amd64.exe",
+        "sha256": "313e6420937a18d7b65eb9feab94e7ed2872e23a5af3c0492ef2278d57a9a317"
       }
     }
   }

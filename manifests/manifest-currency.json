@@ -9,7 +9,7 @@
     "id": "currency",
     "name": "Currency",
     "description": "Reference exchange rates",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "protocolVersion": 1,
     "widgets": {
       "widgets": [
@@ -81,20 +81,20 @@
     },
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-currency-darwin-amd64",
-        "sha256": "71a43cb969a839948e7cdb7b4fd47aca3843da164311b8125a2442c6430395de"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-amd64",
+        "sha256": "227e9a7063399fc99d528376ee0f39c15183f2b00ca305e913b057b0dd9a80f9"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-currency-darwin-arm64",
-        "sha256": "2efd888b117ededbbe4bff1c2ad3dcb94153b0a0152ddf2e50c1da7e8f19702e"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-arm64",
+        "sha256": "0690910cfc40fd3c6ec625a709c0021c481c41a6c53d3d5dbafc8c85b0e7087c"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-currency-linux-amd64",
-        "sha256": "9d00140ebe2cb82d6d40d572e8170e6688c564a5cc4cb1ca073c4874fbaab0f8"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-linux-amd64",
+        "sha256": "416f75d0820f514359f2e89769b089f4a45ee602dd91814be09ddb27e1d40923"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-currency-windows-amd64.exe",
-        "sha256": "0e51f12defc644846879dd9350aa50b5c38e052e6157d4b8982a99e84367267d"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-windows-amd64.exe",
+        "sha256": "5d2c895f8fdb221c6b495a36bce1cbe0578a9d98c5727e5c60f5155ce32e293f"
       }
     }
   }

@@ -1,0 +1,640 @@
+{
+  "version": 1,
+  "repository": {
+    "id": "core",
+    "name": "GryphDash Core Providers",
+    "description": "Official GryphDash providers"
+  },
+  "providers": [
+    {
+      "id": "currency",
+      "name": "Currency",
+      "description": "Reference exchange rates",
+      "version": "1.0.2",
+      "protocolVersion": 1,
+      "widgets": {
+        "widgets": [
+          {
+            "id": "currency/eur-usd",
+            "group": "Currency",
+            "name": "EUR/USD exchange rate",
+            "description": "US dollars per euro · Frankfurter reference rate",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "currency/eur-usd",
+              "path": "rate",
+              "url": "https://api.frankfurter.dev/v2/rate/EUR/USD",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "currency/eur-gbp",
+            "group": "Currency",
+            "name": "EUR/GBP exchange rate",
+            "description": "British pounds per euro · Frankfurter reference rate",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "currency/eur-gbp",
+              "path": "rate",
+              "url": "https://api.frankfurter.dev/v2/rate/EUR/GBP",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "currency/gbp-eur",
+            "group": "Currency",
+            "name": "GBP/EUR exchange rate",
+            "description": "Euros per British pound · Frankfurter reference rate",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "currency/gbp-eur",
+              "path": "rate",
+              "url": "https://api.frankfurter.dev/v2/rate/GBP/EUR",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "currency/eur-huf",
+            "group": "Currency",
+            "name": "EUR/HUF exchange rate",
+            "description": "Hungarian forints per euro · Frankfurter reference rate",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "currency/eur-huf",
+              "path": "rate",
+              "url": "https://api.frankfurter.dev/v2/rate/EUR/HUF",
+              "method": "GET"
+            }
+          }
+        ]
+      },
+      "artifacts": {
+        "darwin-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-amd64",
+          "sha256": "227e9a7063399fc99d528376ee0f39c15183f2b00ca305e913b057b0dd9a80f9"
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-arm64",
+          "sha256": "0690910cfc40fd3c6ec625a709c0021c481c41a6c53d3d5dbafc8c85b0e7087c"
+        },
+        "linux-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-linux-amd64",
+          "sha256": "416f75d0820f514359f2e89769b089f4a45ee602dd91814be09ddb27e1d40923"
+        },
+        "windows-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-windows-amd64.exe",
+          "sha256": "5d2c895f8fdb221c6b495a36bce1cbe0578a9d98c5727e5c60f5155ce32e293f"
+        }
+      }
+    },
+    {
+      "id": "codex",
+      "name": "Codex",
+      "description": "Codex account and usage metrics",
+      "version": "1.0.2",
+      "protocolVersion": 1,
+      "widgets": {
+        "widgets": [
+          {
+            "id": "codex/bucket/{bucket}/primary",
+            "group": "Codex",
+            "name": "Primary limit",
+            "description": "Remaining percentage in the primary quota window",
+            "scope": "limitBuckets",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "limitWindow",
+              "source": "codex/limits",
+              "path": "primary"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/secondary",
+            "group": "Codex",
+            "name": "Secondary limit",
+            "description": "Remaining percentage in the secondary quota window",
+            "scope": "limitBuckets",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "limitWindow",
+              "source": "codex/limits",
+              "path": "secondary"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/credits/balance",
+            "group": "Codex",
+            "name": "Credits remaining",
+            "description": "Spendable credits · not USD",
+            "scope": "limitBuckets",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "credits.balance"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/credits/hasCredits",
+            "group": "Codex",
+            "name": "Credits available",
+            "description": "Whether the account has spendable credits",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "credits.hasCredits"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/credits/unlimited",
+            "group": "Codex",
+            "name": "Unlimited credits",
+            "description": "Provider-reported credit status",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "credits.unlimited"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/planType",
+            "group": "Codex",
+            "name": "Bucket plan",
+            "description": "Plan associated with this limit bucket",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "planType"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/limitName",
+            "group": "Codex",
+            "name": "Limit name",
+            "description": "Optional provider label for this limit bucket",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "limitName"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/spendControlReached",
+            "group": "Codex",
+            "name": "Spend control reached",
+            "description": "Provider-reported spend-control state",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "spendControlReached"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/rateLimitReachedType",
+            "group": "Codex",
+            "name": "Reached-limit state",
+            "description": "Provider-reported limit state",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "rateLimitReachedType"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/individual/limit",
+            "group": "Codex",
+            "name": "Individual spend allowance",
+            "description": "Provider-reported units",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "individualLimit.limit"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/individual/used",
+            "group": "Codex",
+            "name": "Individual spend used",
+            "description": "Provider-reported units",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "individualLimit.used"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/individual/remainingPercent",
+            "group": "Codex",
+            "name": "Individual spend remaining",
+            "description": "Provider-reported percent",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "individualLimit.remainingPercent"
+            }
+          },
+          {
+            "id": "codex/bucket/{bucket}/individual/resetsAt",
+            "group": "Codex",
+            "name": "Individual spend reset",
+            "description": "UTC reset time",
+            "scope": "limitBuckets",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "timestamp",
+              "source": "codex/limits",
+              "path": "individualLimit.resetsAt"
+            }
+          },
+          {
+            "id": "codex/resets/count",
+            "group": "Codex",
+            "name": "Available resets",
+            "description": "Earned resets are separate from spendable credits",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/limits",
+              "path": "rateLimitResetCredits.availableCount"
+            }
+          },
+          {
+            "id": "codex/resets/details",
+            "group": "Codex",
+            "name": "Earned reset details",
+            "description": "Read only · the provider may return fewer details than the available count",
+            "default": false,
+            "width": 8,
+            "height": 6,
+            "logic": {
+              "type": "resetDetails",
+              "source": "codex/limits",
+              "path": "rateLimitResetCredits"
+            }
+          },
+          {
+            "id": "codex/usage/lifetimeTokens",
+            "group": "Codex",
+            "name": "Lifetime tokens",
+            "description": "tokens",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/usage",
+              "path": "summary.lifetimeTokens"
+            }
+          },
+          {
+            "id": "codex/usage/peakDailyTokens",
+            "group": "Codex",
+            "name": "Peak daily tokens",
+            "description": "tokens",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/usage",
+              "path": "summary.peakDailyTokens"
+            }
+          },
+          {
+            "id": "codex/usage/longestRunningTurnSec",
+            "group": "Codex",
+            "name": "Longest-running turn",
+            "description": "seconds",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/usage",
+              "path": "summary.longestRunningTurnSec"
+            }
+          },
+          {
+            "id": "codex/usage/currentStreakDays",
+            "group": "Codex",
+            "name": "Current streak",
+            "description": "days",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/usage",
+              "path": "summary.currentStreakDays"
+            }
+          },
+          {
+            "id": "codex/usage/longestStreakDays",
+            "group": "Codex",
+            "name": "Longest streak",
+            "description": "days",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/usage",
+              "path": "summary.longestStreakDays"
+            }
+          },
+          {
+            "id": "codex/usage/daily",
+            "group": "Codex",
+            "name": "Daily token activity",
+            "description": "Dates as returned by Codex; missing dates are not filled with zero",
+            "default": true,
+            "width": 8,
+            "height": 6,
+            "logic": {
+              "type": "daily",
+              "source": "codex/usage",
+              "path": "dailyUsageBuckets"
+            }
+          },
+          {
+            "id": "codex/account/plan",
+            "group": "Codex",
+            "name": "Account plan",
+            "description": "ChatGPT subscription",
+            "default": true,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/account",
+              "path": "account.planType"
+            }
+          },
+          {
+            "id": "codex/account/auth",
+            "group": "Codex",
+            "name": "Authentication",
+            "description": "Local Codex login",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "codex/account",
+              "path": "account.type"
+            }
+          }
+        ]
+      },
+      "artifacts": {
+        "darwin-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-amd64",
+          "sha256": "f188ca40c022517f979529b09319cb3eb370789c37e9c4acb70c2a8b2889f978"
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-arm64",
+          "sha256": "9bca250f324c3e20758492502c2cb863c71e792e2927eae2a6ab629ed737cdcd"
+        },
+        "linux-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-linux-amd64",
+          "sha256": "06e1fbd05c60727a419fa8a9dc7ad2a4471248f6c6bdd4f333ba3f0b5df4d1f9"
+        },
+        "windows-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-windows-amd64.exe",
+          "sha256": "36b055932c471efeb7f168bd02c6edb85a01e6829c3cb49a74dc7cf1fc03b6fa"
+        }
+      }
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "description": "OpenRouter API key usage and credits",
+      "version": "1.0.2",
+      "protocolVersion": 1,
+      "widgets": {
+        "widgets": [
+          {
+            "id": "openrouter/spend",
+            "group": "OpenRouter",
+            "name": "Spend this month",
+            "description": "Usage charged to the current OpenRouter API key this month · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "usage_monthly",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/budget",
+            "group": "OpenRouter",
+            "name": "Budget remaining",
+            "description": "Remaining configured limit for the current OpenRouter API key · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "limit_remaining",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/credits",
+            "group": "OpenRouter",
+            "name": "Credit balance",
+            "description": "Total purchased credits returned by OpenRouter · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/credits",
+              "path": "total_credits",
+              "url": "https://openrouter.ai/api/v1/credits",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/usage/daily",
+            "group": "OpenRouter",
+            "name": "Usage today",
+            "description": "Usage charged to the current API key today · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "usage_daily",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/usage/weekly",
+            "group": "OpenRouter",
+            "name": "Usage this week",
+            "description": "Usage charged to the current API key this week · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "usage_weekly",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/limit",
+            "group": "OpenRouter",
+            "name": "Key spending limit",
+            "description": "Configured spending limit for the current OpenRouter API key · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "limit",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/limit-reset",
+            "group": "OpenRouter",
+            "name": "Key limit reset",
+            "description": "Reset period for the current API key",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/key",
+              "path": "limit_reset",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/expires",
+            "group": "OpenRouter",
+            "name": "Key expiration",
+            "description": "Expiration timestamp for the current API key",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "timestamp",
+              "source": "openrouter/key",
+              "path": "expires_at",
+              "url": "https://openrouter.ai/api/v1/key",
+              "method": "GET"
+            }
+          },
+          {
+            "id": "openrouter/credits/used",
+            "group": "OpenRouter",
+            "name": "Credits used",
+            "description": "Total credits used according to the management endpoint · USD",
+            "default": false,
+            "width": 4,
+            "height": 4,
+            "logic": {
+              "type": "scalar",
+              "source": "openrouter/credits",
+              "path": "total_usage",
+              "url": "https://openrouter.ai/api/v1/credits",
+              "method": "GET"
+            }
+          }
+        ]
+      },
+      "artifacts": {
+        "darwin-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-amd64",
+          "sha256": "a496a0c6d5728e1c7929c751dfe73a1d46a9a34648e941f9ae2911daf1a31494"
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-arm64",
+          "sha256": "f708b2c1b60d27f0fd71de26be7a98b073f8228ef8475beb98adbe21ab96a3ec"
+        },
+        "linux-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-linux-amd64",
+          "sha256": "ff1e6c29df66a12a028912ab34e9bb12012b13655f752bffd7ec14c578c4100c"
+        },
+        "windows-amd64": {
+          "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-windows-amd64.exe",
+          "sha256": "313e6420937a18d7b65eb9feab94e7ed2872e23a5af3c0492ef2278d57a9a317"
+        }
+      }
+    }
+  ]
+}

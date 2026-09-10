@@ -9,7 +9,7 @@
     "id": "codex",
     "name": "Codex",
     "description": "Codex account and usage metrics",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "protocolVersion": 1,
     "widgets": {
       "widgets": [
@@ -352,20 +352,20 @@
     },
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-codex-darwin-amd64",
-        "sha256": "03e44e8bb1f8a61bb974500374418992bb03ecedd84210bb50498bb6755ce976"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-amd64",
+        "sha256": "f188ca40c022517f979529b09319cb3eb370789c37e9c4acb70c2a8b2889f978"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-codex-darwin-arm64",
-        "sha256": "433952c58eba09ee06885ad5be4a34f8d47f53cec18c09659e38a686eb6eac92"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-arm64",
+        "sha256": "9bca250f324c3e20758492502c2cb863c71e792e2927eae2a6ab629ed737cdcd"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-codex-linux-amd64",
-        "sha256": "b28548f868d322fa5c2a7aecd2a7bd61752adff4515675dc181cab1c0e7fb311"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-linux-amd64",
+        "sha256": "06e1fbd05c60727a419fa8a9dc7ad2a4471248f6c6bdd4f333ba3f0b5df4d1f9"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-codex-windows-amd64.exe",
-        "sha256": "a0a2f6d8d7c0a63640eea0ab553d2a542d53398c7f170687fc7d19d48a76f64d"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-windows-amd64.exe",
+        "sha256": "36b055932c471efeb7f168bd02c6edb85a01e6829c3cb49a74dc7cf1fc03b6fa"
       }
     }
   }
