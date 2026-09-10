@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "repository": {
+    "id": "core",
+    "name": "GryphDash Core Providers",
+    "description": "Official GryphDash providers"
+  },
+  "provider": {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "description": "OpenRouter API key usage and credits",
+    "version": "1.0.1",
+    "protocolVersion": 1,
+    "widgets": {
+      "widgets": [
+        {
+          "id": "openrouter/spend",
+          "group": "OpenRouter",
+          "name": "Spend this month",
+          "description": "Usage charged to the current OpenRouter API key this month · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "usage_monthly",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/budget",
+          "group": "OpenRouter",
+          "name": "Budget remaining",
+          "description": "Remaining configured limit for the current OpenRouter API key · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "limit_remaining",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/credits",
+          "group": "OpenRouter",
+          "name": "Credit balance",
+          "description": "Total purchased credits returned by OpenRouter · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/credits",
+            "path": "total_credits",
+            "url": "https://openrouter.ai/api/v1/credits",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/usage/daily",
+          "group": "OpenRouter",
+          "name": "Usage today",
+          "description": "Usage charged to the current API key today · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "usage_daily",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/usage/weekly",
+          "group": "OpenRouter",
+          "name": "Usage this week",
+          "description": "Usage charged to the current API key this week · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "usage_weekly",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/limit",
+          "group": "OpenRouter",
+          "name": "Key spending limit",
+          "description": "Configured spending limit for the current OpenRouter API key · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "limit",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/limit-reset",
+          "group": "OpenRouter",
+          "name": "Key limit reset",
+          "description": "Reset period for the current API key",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/key",
+            "path": "limit_reset",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/expires",
+          "group": "OpenRouter",
+          "name": "Key expiration",
+          "description": "Expiration timestamp for the current API key",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "timestamp",
+            "source": "openrouter/key",
+            "path": "expires_at",
+            "url": "https://openrouter.ai/api/v1/key",
+            "method": "GET"
+          }
+        },
+        {
+          "id": "openrouter/credits/used",
+          "group": "OpenRouter",
+          "name": "Credits used",
+          "description": "Total credits used according to the management endpoint · USD",
+          "default": false,
+          "width": 4,
+          "height": 4,
+          "logic": {
+            "type": "scalar",
+            "source": "openrouter/credits",
+            "path": "total_usage",
+            "url": "https://openrouter.ai/api/v1/credits",
+            "method": "GET"
+          }
+        }
+      ]
+    },
+    "artifacts": {
+      "darwin-amd64": {
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-darwin-amd64",
+        "sha256": "b92db5018be4471bb1e9ddfc6bca2455075b6209a8d2757683010526676195b6"
+      },
+      "darwin-arm64": {
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-darwin-arm64",
+        "sha256": "f7755c8120e6f4d7c8e0c66959ee1cf07a58897ea9f98b0c6ddbee9d147c5ba0"
+      },
+      "linux-amd64": {
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-linux-amd64",
+        "sha256": "543d7beb4d28ddd116bcc3dafbf246ecbb89c0b8a07f6178c7b95abb509ee0c4"
+      },
+      "windows-amd64": {
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.1/gryphdash-provider-openrouter-windows-amd64.exe",
+        "sha256": "284b110fad98f4309c741bdc05b2b106fbef6959732552fde26db1e88189bb9d"
+      }
+    }
+  }
+}
