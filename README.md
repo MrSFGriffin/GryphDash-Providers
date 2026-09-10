@@ -34,3 +34,7 @@ To create release artifacts for all supported platforms:
 
 Publish the resulting binaries and `SHA256SUMS` at the artifact URLs referenced
 by the GryphDash provider repository manifests.
+
+See the GryphDash [provider repository guide](https://github.com/MrSFGriffin/GryphDash/blob/main/PROVIDER_REPOSITORIES.md)
+for the versioned manifest format, HTTPS/checksum trust model, repository setup,
+installation lifecycle, and managed-provider fallback rules.
