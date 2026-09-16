@@ -9,363 +9,74 @@
     "id": "codex",
     "name": "Codex",
     "description": "Codex account and usage metrics",
-    "version": "1.0.2",
-    "protocolVersion": 1,
-    "widgets": {
-      "widgets": [
-        {
-          "id": "codex/bucket/{bucket}/primary",
-          "group": "Codex",
-          "name": "Primary limit",
-          "description": "Remaining percentage in the primary quota window",
-          "scope": "limitBuckets",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "limitWindow",
-            "source": "codex/limits",
-            "path": "primary"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/secondary",
-          "group": "Codex",
-          "name": "Secondary limit",
-          "description": "Remaining percentage in the secondary quota window",
-          "scope": "limitBuckets",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "limitWindow",
-            "source": "codex/limits",
-            "path": "secondary"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/credits/balance",
-          "group": "Codex",
-          "name": "Credits remaining",
-          "description": "Spendable credits · not USD",
-          "scope": "limitBuckets",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "credits.balance"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/credits/hasCredits",
-          "group": "Codex",
-          "name": "Credits available",
-          "description": "Whether the account has spendable credits",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "credits.hasCredits"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/credits/unlimited",
-          "group": "Codex",
-          "name": "Unlimited credits",
-          "description": "Provider-reported credit status",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "credits.unlimited"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/planType",
-          "group": "Codex",
-          "name": "Bucket plan",
-          "description": "Plan associated with this limit bucket",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "planType"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/limitName",
-          "group": "Codex",
-          "name": "Limit name",
-          "description": "Optional provider label for this limit bucket",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "limitName"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/spendControlReached",
-          "group": "Codex",
-          "name": "Spend control reached",
-          "description": "Provider-reported spend-control state",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "spendControlReached"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/rateLimitReachedType",
-          "group": "Codex",
-          "name": "Reached-limit state",
-          "description": "Provider-reported limit state",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "rateLimitReachedType"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/individual/limit",
-          "group": "Codex",
-          "name": "Individual spend allowance",
-          "description": "Provider-reported units",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "individualLimit.limit"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/individual/used",
-          "group": "Codex",
-          "name": "Individual spend used",
-          "description": "Provider-reported units",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "individualLimit.used"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/individual/remainingPercent",
-          "group": "Codex",
-          "name": "Individual spend remaining",
-          "description": "Provider-reported percent",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "individualLimit.remainingPercent"
-          }
-        },
-        {
-          "id": "codex/bucket/{bucket}/individual/resetsAt",
-          "group": "Codex",
-          "name": "Individual spend reset",
-          "description": "UTC reset time",
-          "scope": "limitBuckets",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "timestamp",
-            "source": "codex/limits",
-            "path": "individualLimit.resetsAt"
-          }
-        },
-        {
-          "id": "codex/resets/count",
-          "group": "Codex",
-          "name": "Available resets",
-          "description": "Earned resets are separate from spendable credits",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/limits",
-            "path": "rateLimitResetCredits.availableCount"
-          }
-        },
-        {
-          "id": "codex/resets/details",
-          "group": "Codex",
-          "name": "Earned reset details",
-          "description": "Read only · the provider may return fewer details than the available count",
-          "default": false,
-          "width": 8,
-          "height": 6,
-          "logic": {
-            "type": "resetDetails",
-            "source": "codex/limits",
-            "path": "rateLimitResetCredits"
-          }
-        },
-        {
-          "id": "codex/usage/lifetimeTokens",
-          "group": "Codex",
-          "name": "Lifetime tokens",
-          "description": "tokens",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/usage",
-            "path": "summary.lifetimeTokens"
-          }
-        },
-        {
-          "id": "codex/usage/peakDailyTokens",
-          "group": "Codex",
-          "name": "Peak daily tokens",
-          "description": "tokens",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/usage",
-            "path": "summary.peakDailyTokens"
-          }
-        },
-        {
-          "id": "codex/usage/longestRunningTurnSec",
-          "group": "Codex",
-          "name": "Longest-running turn",
-          "description": "seconds",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/usage",
-            "path": "summary.longestRunningTurnSec"
-          }
-        },
-        {
-          "id": "codex/usage/currentStreakDays",
-          "group": "Codex",
-          "name": "Current streak",
-          "description": "days",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/usage",
-            "path": "summary.currentStreakDays"
-          }
-        },
-        {
-          "id": "codex/usage/longestStreakDays",
-          "group": "Codex",
-          "name": "Longest streak",
-          "description": "days",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/usage",
-            "path": "summary.longestStreakDays"
-          }
-        },
-        {
-          "id": "codex/usage/daily",
-          "group": "Codex",
-          "name": "Daily token activity",
-          "description": "Dates as returned by Codex; missing dates are not filled with zero",
-          "default": true,
-          "width": 8,
-          "height": 6,
-          "logic": {
-            "type": "daily",
-            "source": "codex/usage",
-            "path": "dailyUsageBuckets"
-          }
-        },
-        {
-          "id": "codex/account/plan",
-          "group": "Codex",
-          "name": "Account plan",
-          "description": "ChatGPT subscription",
-          "default": true,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/account",
-            "path": "account.planType"
-          }
-        },
-        {
-          "id": "codex/account/auth",
-          "group": "Codex",
-          "name": "Authentication",
-          "description": "Local Codex login",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "codex/account",
-            "path": "account.type"
-          }
+    "version": "1.0.3",
+    "protocolVersion": 2,
+    "sources": [
+      {
+        "id": "codex/account",
+        "name": "Codex account",
+        "description": "Authenticated Codex account details",
+        "schema": {
+          "properties": {
+            "planType": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "type": "object"
         }
-      ]
-    },
+      },
+      {
+        "id": "codex/limits",
+        "name": "Codex limits",
+        "description": "Account limit windows and reset credits",
+        "schema": {
+          "properties": {
+            "buckets": {
+              "type": "object"
+            },
+            "rateLimitResetCredits": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      {
+        "id": "codex/usage",
+        "name": "Codex usage",
+        "description": "Codex token usage summaries and daily activity",
+        "schema": {
+          "properties": {
+            "dailyUsageBuckets": {
+              "type": "array"
+            },
+            "summary": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      }
+    ],
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-amd64",
-        "sha256": "f188ca40c022517f979529b09319cb3eb370789c37e9c4acb70c2a8b2889f978"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-codex-darwin-amd64",
+        "sha256": "0214352551f845fad9c5a75ec0da87ee6a14192cd5bc67c0b35787cc0dae4d7e"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-darwin-arm64",
-        "sha256": "9bca250f324c3e20758492502c2cb863c71e792e2927eae2a6ab629ed737cdcd"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-codex-darwin-arm64",
+        "sha256": "c59485fb15d4b0693cc7480a8b838254e196c9487e0c193819c32dda1eb29436"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-linux-amd64",
-        "sha256": "06e1fbd05c60727a419fa8a9dc7ad2a4471248f6c6bdd4f333ba3f0b5df4d1f9"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-codex-linux-amd64",
+        "sha256": "f05b03c456091246d26ebbc20427cf0b89b7390b2489853f2520479b2bd62c75"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-codex-windows-amd64.exe",
-        "sha256": "36b055932c471efeb7f168bd02c6edb85a01e6829c3cb49a74dc7cf1fc03b6fa"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-codex-windows-amd64.exe",
+        "sha256": "402e3805a802cf874dc8e248a29c0918697fade23cb0cebcc894c9cbc9e78f12"
       }
     }
   }

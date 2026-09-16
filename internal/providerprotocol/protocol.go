@@ -1,9 +1,9 @@
 // Package providerprotocol defines the wire format used by external providers.
 package providerprotocol
 
-import "github.com/MrSFGriffin/GryphDash-Providers/internal/dashboard"
+import "github.com/MrSFGriffin/GryphDash-Providers/internal/metrics"
 
-const Version = 1
+const Version = 2
 
 type Request struct {
 	Version int    `json:"version"`
@@ -11,9 +11,9 @@ type Request struct {
 }
 
 type Response struct {
-	Version  int                         `json:"version"`
-	Provider string                      `json:"provider"`
-	Widgets  dashboard.WidgetCatalog     `json:"widgets,omitempty"`
-	Results  map[string]dashboard.Result `json:"results,omitempty"`
-	Error    string                      `json:"error,omitempty"`
+	Version     int                       `json:"version"`
+	Provider    string                    `json:"provider"`
+	Description *ProviderDescription      `json:"description,omitempty"`
+	Results     map[string]metrics.Result `json:"results,omitempty"`
+	Error       string                    `json:"error,omitempty"`
 }

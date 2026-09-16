@@ -19,6 +19,8 @@ type Pair struct {
 	Quote string
 }
 
+func (p Pair) ID() string { return sourceName(p) }
+
 type Client struct {
 	HTTPClient *http.Client
 	BaseURL    string
