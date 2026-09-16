@@ -21,6 +21,7 @@ fi
 repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 release_dir=$(mktemp -d "${TMPDIR:-/tmp}/gryphdash-providers-${tag}-XXXXXX")
 manifest_dir="$release_dir/manifests"
+stable_manifest_dir="$repo_root/manifests"
 trap 'rm -rf "$release_dir"' EXIT
 
 if ! command -v gh >/dev/null 2>&1; then
@@ -29,6 +30,10 @@ if ! command -v gh >/dev/null 2>&1; then
 fi
 if ! gh auth status >/dev/null 2>&1; then
   printf 'GitHub CLI is not authenticated. Run gh auth login first.\n' >&2
+  exit 1
+fi
+if [[ -z "$(git -C "$repo_root" config user.name)" || -z "$(git -C "$repo_root" config user.email)" ]]; then
+  printf 'Git author identity is required. Configure git user.name and user.email first.\n' >&2
   exit 1
 fi
 
@@ -41,11 +46,11 @@ release_url="https://github.com/MrSFGriffin/GryphDash-Providers/releases/downloa
   -release-url "$release_url" \
   -artifacts "$release_dir" \
   -output "$manifest_dir")
-cp "$manifest_dir"/manifest-*.json "$release_dir"/
+cp "$manifest_dir"/manifest-*.json "$manifest_dir"/repository.json "$release_dir"/
 
-mapfile -t assets < <(find "$release_dir" -maxdepth 1 -type f \( -name 'gryphdash-provider-*' -o -name 'SHA256SUMS' -o -name 'manifest-*.json' \) | sort)
-if [[ ${#assets[@]} -ne 16 ]]; then
-  printf 'Expected 16 release assets, found %d\n' "${#assets[@]}" >&2
+mapfile -t assets < <(find "$release_dir" -maxdepth 1 -type f \( -name 'gryphdash-provider-*' -o -name 'SHA256SUMS' -o -name 'manifest-*.json' -o -name 'repository.json' \) | sort)
+if [[ ${#assets[@]} -ne 17 ]]; then
+  printf 'Expected 17 release assets, found %d\n' "${#assets[@]}" >&2
   exit 1
 fi
 
@@ -58,5 +63,16 @@ else
     --title "GryphDash Providers $tag" \
     --generate-notes
 fi
+
+printf 'Publishing stable manifests to the provider repository main branch…\n'
+mkdir -p "$stable_manifest_dir"
+cp "$manifest_dir"/manifest-*.json "$stable_manifest_dir"/
+cp "$manifest_dir"/repository.json "$repo_root"/
+(cd "$repo_root" && git add manifests repository.json && if git diff --cached --quiet -- manifests repository.json; then
+  printf 'Stable manifests are already current.\n'
+else
+  git commit -m "Publish provider manifests for $tag"
+  git push
+fi)
 
 printf 'Release ready: %s\n' "$(gh release view "$tag" --json url --jq .url)"

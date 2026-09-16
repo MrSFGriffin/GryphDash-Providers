@@ -9,92 +9,146 @@
     "id": "currency",
     "name": "Currency",
     "description": "Reference exchange rates",
-    "version": "1.0.2",
-    "protocolVersion": 1,
-    "widgets": {
-      "widgets": [
-        {
-          "id": "currency/eur-usd",
-          "group": "Currency",
-          "name": "EUR/USD exchange rate",
-          "description": "US dollars per euro · Frankfurter reference rate",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "currency/eur-usd",
-            "path": "rate",
-            "url": "https://api.frankfurter.dev/v2/rate/EUR/USD",
-            "method": "GET"
-          }
+    "version": "1.0.3",
+    "protocolVersion": 2,
+    "sources": [
+      {
+        "id": "currency/eur-usd",
+        "name": "EUR/USD exchange rate",
+        "description": "USD per EUR · Frankfurter reference rate",
+        "schema": {
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "rate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "date",
+            "base",
+            "quote",
+            "rate"
+          ],
+          "type": "object"
         },
-        {
-          "id": "currency/eur-gbp",
-          "group": "Currency",
-          "name": "EUR/GBP exchange rate",
-          "description": "British pounds per euro · Frankfurter reference rate",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "currency/eur-gbp",
-            "path": "rate",
-            "url": "https://api.frankfurter.dev/v2/rate/EUR/GBP",
-            "method": "GET"
-          }
+        "url": "https://api.frankfurter.dev/v2/rate/EUR/USD",
+        "method": "GET"
+      },
+      {
+        "id": "currency/eur-gbp",
+        "name": "EUR/GBP exchange rate",
+        "description": "GBP per EUR · Frankfurter reference rate",
+        "schema": {
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "rate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "date",
+            "base",
+            "quote",
+            "rate"
+          ],
+          "type": "object"
         },
-        {
-          "id": "currency/gbp-eur",
-          "group": "Currency",
-          "name": "GBP/EUR exchange rate",
-          "description": "Euros per British pound · Frankfurter reference rate",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "currency/gbp-eur",
-            "path": "rate",
-            "url": "https://api.frankfurter.dev/v2/rate/GBP/EUR",
-            "method": "GET"
-          }
+        "url": "https://api.frankfurter.dev/v2/rate/EUR/GBP",
+        "method": "GET"
+      },
+      {
+        "id": "currency/gbp-eur",
+        "name": "GBP/EUR exchange rate",
+        "description": "EUR per GBP · Frankfurter reference rate",
+        "schema": {
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "rate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "date",
+            "base",
+            "quote",
+            "rate"
+          ],
+          "type": "object"
         },
-        {
-          "id": "currency/eur-huf",
-          "group": "Currency",
-          "name": "EUR/HUF exchange rate",
-          "description": "Hungarian forints per euro · Frankfurter reference rate",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "currency/eur-huf",
-            "path": "rate",
-            "url": "https://api.frankfurter.dev/v2/rate/EUR/HUF",
-            "method": "GET"
-          }
-        }
-      ]
-    },
+        "url": "https://api.frankfurter.dev/v2/rate/GBP/EUR",
+        "method": "GET"
+      },
+      {
+        "id": "currency/eur-huf",
+        "name": "EUR/HUF exchange rate",
+        "description": "HUF per EUR · Frankfurter reference rate",
+        "schema": {
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "rate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "date",
+            "base",
+            "quote",
+            "rate"
+          ],
+          "type": "object"
+        },
+        "url": "https://api.frankfurter.dev/v2/rate/EUR/HUF",
+        "method": "GET"
+      }
+    ],
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-amd64",
-        "sha256": "227e9a7063399fc99d528376ee0f39c15183f2b00ca305e913b057b0dd9a80f9"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-currency-darwin-amd64",
+        "sha256": "3f583762e04c9ba07518984761bedfb79cc1b27748b01b7ff4d5225aeb16d0da"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-darwin-arm64",
-        "sha256": "0690910cfc40fd3c6ec625a709c0021c481c41a6c53d3d5dbafc8c85b0e7087c"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-currency-darwin-arm64",
+        "sha256": "233298a47a71de71bc70ffa5c414702efbcc002f5e8ee646aa7e419cec8e6447"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-linux-amd64",
-        "sha256": "416f75d0820f514359f2e89769b089f4a45ee602dd91814be09ddb27e1d40923"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-currency-linux-amd64",
+        "sha256": "6518a6fc2caa7a1d902080abebb4a2f3fb6410d827e2dcd304214823af8e91fa"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-currency-windows-amd64.exe",
-        "sha256": "5d2c895f8fdb221c6b495a36bce1cbe0578a9d98c5727e5c60f5155ce32e293f"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-currency-windows-amd64.exe",
+        "sha256": "e9149528ba79fb940b1871a08de1d36c8c532093dbbe63b3d8b34711a775f154"
       }
     }
   }

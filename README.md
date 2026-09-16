@@ -2,7 +2,8 @@
 
 Core external providers for [GryphDash](https://github.com/MrSFGriffin/GryphDash):
 Codex, Currency, and OpenRouter. Each command speaks GryphDash's versioned
-line-delimited subprocess protocol and supports `-widgets`.
+line-delimited subprocess protocol and supports `-describe` for protocol-v2
+data-source descriptions.
 
 ## Build
 
@@ -20,8 +21,8 @@ This repository is the release source for managed provider artifacts. The
 GryphDash repository still contains identical in-repository provider sources
 and build scripts for offline development and fallback when no managed copy is
 installed. A release can cross-compile each command for Linux amd64, Windows
-amd64, macOS amd64, and macOS arm64, then publish checksummed artifacts in a
-provider repository manifest.
+amd64, macOS amd64, and macOS arm64, then publish checksummed artifacts in one
+provider repository index.
 
 Providers own their service API calls and credentials. Tests use local fixtures;
 they never require a live Codex login or third-party account.
@@ -39,11 +40,14 @@ with `gh auth login` first and provide a semantic version:
 ./release.sh 1.0.0
 ```
 
-The script builds all platform binaries, generates `manifest-currency.json`,
-`manifest-codex.json`, and `manifest-openrouter.json` from the provider widget
-responses and checksums, creates the `v1.0.0` release when it does not exist, or
-replaces its assets when it does exist. Temporary build artifacts are removed
-after upload.
+The script builds all platform binaries and generates one `repository.json`
+index containing the Currency, Codex, and OpenRouter provider groups, plus
+internal per-provider manifests, from provider descriptions and checksums.
+It creates the `v1.0.0` release when it does not exist, or replaces its assets
+when it does exist. Temporary build artifacts are removed after upload. It then
+commits and pushes `repository.json` and the internal manifests to the
+repository's `main` branch. GryphDash uses the single stable repository URL
+without knowing anything about GitHub release asset URLs.
 
 Publish the resulting binaries and `SHA256SUMS` at the artifact URLs referenced
 by the GryphDash provider repository manifests.

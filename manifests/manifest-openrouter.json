@@ -9,172 +9,77 @@
     "id": "openrouter",
     "name": "OpenRouter",
     "description": "OpenRouter API key usage and credits",
-    "version": "1.0.2",
-    "protocolVersion": 1,
-    "widgets": {
-      "widgets": [
-        {
-          "id": "openrouter/spend",
-          "group": "OpenRouter",
-          "name": "Spend this month",
-          "description": "Usage charged to the current OpenRouter API key this month · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "usage_monthly",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
+    "version": "1.0.3",
+    "protocolVersion": 2,
+    "sources": [
+      {
+        "id": "openrouter/key",
+        "name": "OpenRouter key",
+        "description": "Usage and limits for the configured API key",
+        "schema": {
+          "properties": {
+            "expires_at": {
+              "type": "string"
+            },
+            "limit": {
+              "type": "number"
+            },
+            "limit_remaining": {
+              "type": "number"
+            },
+            "limit_reset": {
+              "type": "string"
+            },
+            "usage_daily": {
+              "type": "number"
+            },
+            "usage_monthly": {
+              "type": "number"
+            },
+            "usage_weekly": {
+              "type": "number"
+            }
+          },
+          "type": "object"
         },
-        {
-          "id": "openrouter/budget",
-          "group": "OpenRouter",
-          "name": "Budget remaining",
-          "description": "Remaining configured limit for the current OpenRouter API key · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "limit_remaining",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
+        "url": "https://openrouter.ai/api/v1/key",
+        "method": "GET"
+      },
+      {
+        "id": "openrouter/credits",
+        "name": "OpenRouter credits",
+        "description": "Purchased and consumed OpenRouter credits",
+        "schema": {
+          "properties": {
+            "total_credits": {
+              "type": "number"
+            },
+            "total_usage": {
+              "type": "number"
+            }
+          },
+          "type": "object"
         },
-        {
-          "id": "openrouter/credits",
-          "group": "OpenRouter",
-          "name": "Credit balance",
-          "description": "Total purchased credits returned by OpenRouter · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/credits",
-            "path": "total_credits",
-            "url": "https://openrouter.ai/api/v1/credits",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/usage/daily",
-          "group": "OpenRouter",
-          "name": "Usage today",
-          "description": "Usage charged to the current API key today · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "usage_daily",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/usage/weekly",
-          "group": "OpenRouter",
-          "name": "Usage this week",
-          "description": "Usage charged to the current API key this week · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "usage_weekly",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/limit",
-          "group": "OpenRouter",
-          "name": "Key spending limit",
-          "description": "Configured spending limit for the current OpenRouter API key · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "limit",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/limit-reset",
-          "group": "OpenRouter",
-          "name": "Key limit reset",
-          "description": "Reset period for the current API key",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/key",
-            "path": "limit_reset",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/expires",
-          "group": "OpenRouter",
-          "name": "Key expiration",
-          "description": "Expiration timestamp for the current API key",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "timestamp",
-            "source": "openrouter/key",
-            "path": "expires_at",
-            "url": "https://openrouter.ai/api/v1/key",
-            "method": "GET"
-          }
-        },
-        {
-          "id": "openrouter/credits/used",
-          "group": "OpenRouter",
-          "name": "Credits used",
-          "description": "Total credits used according to the management endpoint · USD",
-          "default": false,
-          "width": 4,
-          "height": 4,
-          "logic": {
-            "type": "scalar",
-            "source": "openrouter/credits",
-            "path": "total_usage",
-            "url": "https://openrouter.ai/api/v1/credits",
-            "method": "GET"
-          }
-        }
-      ]
-    },
+        "url": "https://openrouter.ai/api/v1/credits",
+        "method": "GET"
+      }
+    ],
     "artifacts": {
       "darwin-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-amd64",
-        "sha256": "a496a0c6d5728e1c7929c751dfe73a1d46a9a34648e941f9ae2911daf1a31494"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-openrouter-darwin-amd64",
+        "sha256": "6a782c06e5fbdcad88a40fb7f85ff85256961d79f7552bc3def85f985ed775a7"
       },
       "darwin-arm64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-darwin-arm64",
-        "sha256": "f708b2c1b60d27f0fd71de26be7a98b073f8228ef8475beb98adbe21ab96a3ec"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-openrouter-darwin-arm64",
+        "sha256": "9cb781b727a57a2262a198435131e24e83b5731b19f413fad67ee3be65186ceb"
       },
       "linux-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-linux-amd64",
-        "sha256": "ff1e6c29df66a12a028912ab34e9bb12012b13655f752bffd7ec14c578c4100c"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-openrouter-linux-amd64",
+        "sha256": "d82dd89aacee6cbedef204bdc7f3128ea6a341f3a76b91ad74ba985a664af3e2"
       },
       "windows-amd64": {
-        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.2/gryphdash-provider-openrouter-windows-amd64.exe",
-        "sha256": "313e6420937a18d7b65eb9feab94e7ed2872e23a5af3c0492ef2278d57a9a317"
+        "url": "https://github.com/MrSFGriffin/GryphDash-Providers/releases/download/v1.0.3/gryphdash-provider-openrouter-windows-amd64.exe",
+        "sha256": "56d0aeff420b63aafeface5056ff875a6200a99e60428b688acb4b961ef92531"
       }
     }
   }
